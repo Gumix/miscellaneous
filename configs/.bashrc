@@ -16,7 +16,8 @@ PS4="\[${purple}\]+\[${rst}\] "
 
 # Aliases
 alias h='history'		# History
-alias ls='ls -AG'		# List all entries + enable colorized output
+#alias ls='ls -AG'		# List all entries + enable colorized output
+alias ls='gls --almost-all --color'	# GNU ls: list all entries + enable colorized output
 alias l='ls -l'			# List in long format
 alias rm='rm -i'		# Request confirmation before attempting to remove each file
 alias tree="ls -R | grep \":$\" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
@@ -40,3 +41,6 @@ export GREP_COLORS="ms=38;5;226:mc=01;31:sl=:cx=:fn=35:ln=32:bn=32:se=36"
 # Man highlighting
 export LESS_TERMCAP_md=$'\E[01;37m'
 export LESS_TERMCAP_me=$'\E[0m'
+
+# ls colors
+eval `gdircolors ~/.dir_colors`
