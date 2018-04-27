@@ -9,7 +9,8 @@ set nocompatible
 
 set laststatus=2    " Always display the status line
 "set statusline=%f%M%R%Y\ \ \ %{fugitive#statusline()}%=%{strftime(\"%H:%M\",localtime())}\ \ %P\ %3c\ %4l/%L\ 
-set statusline=%f%M%R%Y\ \ \ %{fugitive#statusline()}%=\ \ \ %{strftime(\"%H:%M\",localtime())}\ \ %P\ %3c%V\ %4l/%L\ 
+"set statusline=%f%M%R%Y\ \ \ %{fugitive#statusline()}%=\ \ \ %{strftime(\"%H:%M\",localtime())}\ \ %P\ %3c%V\ %4l/%L\ 
+set statusline=%f%M%R%Y\ \ \ %=\ \ %P\ %3c%V\ %4l/%L\ 
 set incsearch		" Do incremental searching
 set ignorecase		" Case-insensitive searching
 set smartcase		" If a pattern contains an uppercase letter, it is case sensitive, otherwise, it is not
@@ -76,10 +77,12 @@ let Grep_Skip_Files = 'tags'
 
 execute pathogen#infect()
 
-let gitgutter_sign = "○→"
+let gitgutter_sign = "⇰"
 let g:gitgutter_sign_added = gitgutter_sign
 let g:gitgutter_sign_modified = gitgutter_sign
 let g:gitgutter_sign_removed = gitgutter_sign
 let g:gitgutter_sign_modified_removed = gitgutter_sign
 
 let g:move_key_modifier = 'C'
+
+let g:startify_fortune_use_unicode = 1

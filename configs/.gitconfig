@@ -1,5 +1,21 @@
 [color]
 	ui = true
+[color "diff"]
+	plain = white
+	meta = white bold
+	func = white bold
+	whitespace = normal red
+[color "grep"]
+	filename = magenta
+	linenumber = white
+	match = yellow
 [user]
 	name = Ilya Verbin
 	email = iverbin@gmail.com
+[core]
+	pager = less -x4
+	excludesfile = ~/.gitignore
+[push]
+	default = simple
+[grep]
+	linenumber = true
