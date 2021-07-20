@@ -55,3 +55,11 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # ls colors
 eval `gdircolors ~/.dir_colors`
+
+# Mcfly
+export MCFLY_FUZZY=true
+export MCFLY_RESULTS=20
+export MCFLY_KEY_SCHEME=vim
+if [[ -r "/opt/local/share/mcfly/mcfly.bash" ]]; then
+	source "/opt/local/share/mcfly/mcfly.bash"
+fi
