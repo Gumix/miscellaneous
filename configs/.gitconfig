@@ -19,3 +19,5 @@
 	default = simple
 [grep]
 	linenumber = true
+[diff]
+	noprefix = true
