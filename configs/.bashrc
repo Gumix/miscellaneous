@@ -23,12 +23,22 @@ alias rm='rm -i'		# Request confirmation before attempting to remove each file
 alias tree="ls -R | grep \":$\" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
 alias grep='grep --color=auto'
 
+# Git aliases
 alias gbr='git branch'
 alias gst='git status'
 alias gco='git checkout'
 alias glog='git log --graph --decorate'
-alias gdiff='git diff'
 alias ggrep='git grep'
+
+gshow()
+{
+	git show $1 | bat --language diff --style=plain
+}
+
+gdiff()
+{
+	git diff $1 | bat --language diff --style=plain
+}
 
 # Editors
 export EDITOR=vim
@@ -39,8 +49,9 @@ export VISUAL=vim
 export GREP_COLORS="ms=38;5;226:mc=01;31:sl=:cx=:fn=35:ln=32:bn=32:se=36"
 
 # Man highlighting
-export LESS_TERMCAP_md=$'\E[01;37m'
-export LESS_TERMCAP_me=$'\E[0m'
+# export LESS_TERMCAP_md=$'\E[01;37m'
+# export LESS_TERMCAP_me=$'\E[0m'
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # ls colors
 eval `gdircolors ~/.dir_colors`
