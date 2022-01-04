@@ -1,6 +1,6 @@
 [Basic]
 LBP=40
-LC=30
+LC=15
 ALC0=0
 ALC1=20
 ALC2=20
