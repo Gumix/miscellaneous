@@ -39,7 +39,7 @@ KC=60
 [Throttle Handle]
 SV=11
 EV=35
-MODE=0
+MODE=1
 DA=10
 SL=26
 SC=10
