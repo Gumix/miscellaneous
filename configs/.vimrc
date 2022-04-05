@@ -26,7 +26,10 @@ set backspace=indent,eol,start	" allow backspacing over everything in insert mod
 set showcmd			" Display incomplete commands
 set tabstop=4		" Display tab as 4 spaces
 set t_Co=256		" Enable 256 colors
+set background=dark
 colorscheme jellybeans_g
+set autochdir
+set tags=./tags,tags;
 
 map \ :nohlsearch <CR>
 
@@ -69,6 +72,10 @@ else
 
 endif " has("autocmd")
 
+" set expandtab shiftwidth=8 tabstop=8 softtabstop=0
+set shiftwidth=8 tabstop=8 softtabstop=0
+set cinoptions=:0,l1,t0,(0,u0,W1s,j1
+
 " results of grep - next F7, prev F9
 map <F7> :cprevious <CR>
 map <F9> :cnext <CR>
@@ -77,7 +84,7 @@ let Grep_Skip_Files = 'tags'
 
 execute pathogen#infect()
 
-let gitgutter_sign = "⇰"
+let gitgutter_sign = "→"
 let g:gitgutter_sign_added = gitgutter_sign
 let g:gitgutter_sign_modified = gitgutter_sign
 let g:gitgutter_sign_removed = gitgutter_sign

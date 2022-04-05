@@ -416,7 +416,7 @@ fun! s:X(group, fg, bg, attr, lcfg, lcbg)
 endfun
 " }}}
 
-call s:X("Normal","e8e8e8",s:background_color,"","White","")
+call s:X("Normal","c7c7c7",s:background_color,"","White","")
 set background=dark
 
 call s:X("CursorLine","",s:background_color,"","",s:termBlack)
@@ -464,7 +464,7 @@ call s:X("Comment","888888","","italic","Grey","")
 call s:X("Todo","808080","","bold","White",s:termBlack)
 
 call s:X("StatusLine","000000","9e9e9e","italic","","White")
-call s:X("StatusLineNC","e8e8e8","303030","italic","White","Black")
+call s:X("StatusLineNC","c7c7c7","303030","italic","White","Black")
 call s:X("VertSplit","777777",s:background_color,"",s:termBlack,s:termBlack)
 call s:X("WildMenu","f0a0c0","302028","","Magenta","")
 
@@ -496,7 +496,6 @@ call s:X("NonText","606060",s:background_color,"",s:termBlack,"")
 
 call s:X("SpecialKey","444444",s:background_color,"",s:termBlack,"")
 
-" call s:X("Search","f0a0c0","302028","underline","Magenta","")
 call s:X("Search","ffff32","000000","underline","Yellow","")
 
 call s:X("Directory","dad085","","","Yellow","")
@@ -517,6 +516,9 @@ call s:X("SpellLocal","","2D7067","underline","","Green")
 
 hi! link diffRemoved Constant
 hi! link diffAdded String
+call s:X("diffSubname","","2B5B77","","","DarkBlue")
+hi! link diffFile diffSubname
+hi! link diffIndexLine diffSubname
 
 " VimDiff
 
