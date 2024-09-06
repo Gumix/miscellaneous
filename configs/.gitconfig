@@ -13,11 +13,20 @@
 	name = Ilya Verbin
 	email = iverbin@gmail.com
 [core]
+	editor = nvim
 	pager = less -x4
 	excludesfile = ~/.gitignore
 [push]
 	default = simple
 [grep]
 	linenumber = true
+[pull]
+	ff = only
 [diff]
 	noprefix = true
+[merge] 
+	tool = vimdiff 
+	conflictstyle = diff3 
+[mergetool] 
+	prompt = false 
+	keepBackup = false

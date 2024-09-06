@@ -471,7 +471,7 @@ call s:X("WildMenu","f0a0c0","302028","","Magenta","")
 call s:X("Folded","a0a8b0","384048","italic",s:termBlack,"")
 call s:X("FoldColumn","535D66",s:background_color,"","",s:termBlack)
 call s:X("SignColumn","777777",s:background_color,"","",s:termBlack)
-call s:X("ColorColumn","","000000","","",s:termBlack)
+call s:X("ColorColumn","","090909","","",s:termBlack)
 
 call s:X("Title","70b950","","bold","Green","")
 
@@ -482,7 +482,7 @@ call s:X("Delimiter","668799","","","Grey","")
 call s:X("String","99ad6a","","","Green","")
 call s:X("StringDelimiter","556633","","","DarkGreen","")
 
-call s:X("Identifier","c6b6ee","","","LightCyan","")
+call s:X("Identifier","c7c7c7","","","LightCyan","")
 call s:X("Structure","8fbfdc","","","LightCyan","")
 call s:X("Function","fad07a","","","Yellow","")
 call s:X("Statement","8197bf","","","DarkBlue","")
@@ -492,7 +492,7 @@ hi! link Operator Structure
 hi! link Conceal Operator
 
 call s:X("Type","ffb964","","","Yellow","")
-call s:X("NonText","606060",s:background_color,"",s:termBlack,"")
+call s:X("NonText","606060","090909","",s:termBlack,"")
 
 call s:X("SpecialKey","444444",s:background_color,"",s:termBlack,"")
 
@@ -657,6 +657,16 @@ call s:X("IndentGuidesEven","","1b1b1b","","","")
 hi! link TagListFileName Directory
 call s:X("PreciseJumpTarget","B9ED67","405026","","White","Green")
 
+" vim-gitgutter
+
+call s:X("GitGutterAdd","99ad6a","000000","none",s:termBlack,"")
+call s:X("GitGutterChange","ffb964","000000","none",s:termBlack,"")
+call s:X("GitGutterDelete","cf6a4c","000000","none",s:termBlack,"")
+call s:X("GitGutterChangeDelete","ffb964","000000","none",s:termBlack,"")
+
+" vim-bookmarks
+call s:X("BookmarkSign","ffff32","000000","","","")
+
 " Manual overrides for 256-color terminals. Dark colors auto-map badly.
 if !s:low_color
   hi StatusLine ctermbg=247
@@ -729,11 +739,6 @@ if !empty("s:overrides")
   delf s:current_color
   delf s:current_attr
 endif
-
-call s:X("GitGutterAdd","99ad6a","000000","none",s:termBlack,"")
-call s:X("GitGutterChange","ffb964","000000","none",s:termBlack,"")
-call s:X("GitGutterDelete","cf6a4c","000000","none",s:termBlack,"")
-call s:X("GitGutterChangeDelete","ffb964","000000","none",s:termBlack,"")
 
 " delete functions {{{
 delf s:X

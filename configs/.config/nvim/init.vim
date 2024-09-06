@@ -36,6 +36,10 @@ augroup vimrcEx
 au!
 " For all text files set 'textwidth' to 80 characters.
 autocmd FileType text setlocal textwidth=80
+
+" Comma-separated list of screen columns that are highlighted with ColorColumn.
+let &colorcolumn=join(range(81,200),",")
+
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
 " (happens when dropping a file on gvim).
@@ -51,21 +55,8 @@ map <F9> :cnext <CR>
 let Grep_Skip_Dirs = '.git build install'
 let Grep_Skip_Files = 'tags'
 
-call plug#begin()		" Start vim-plug
-
-Plug 'mhinz/vim-startify'
-Plug 'preservim/nerdtree'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'vim-scripts/grep.vim'
-Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/lsp-status.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'numToStr/Comment.nvim'
-
-call plug#end()			" Initialize vim-plug
-
+let g:startify_change_to_dir = 0
+let g:startify_change_to_vcs_root = 1
 let g:startify_fortune_use_unicode = 1
 
 let gitgutter_sign = "→"
@@ -82,3 +73,5 @@ lua require('init')
 
 " numToStr/Comment.nvim
 lua require('Comment').setup()
+
+let g:bookmark_sign = '✏️'
