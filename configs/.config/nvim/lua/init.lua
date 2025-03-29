@@ -37,12 +37,71 @@ require("lazy").setup({
   "rhysd/vim-wasm",
   -- Vim filetype support for LLVM
   "rhysd/vim-llvm",
-  -- The undo history visualizer for Vim
-  "mbbill/undotree",
-  -- Plugin that creates missing LSP diagnostics highlight groups for color
-  -- schemes that don't yet support the Neovim 0.5 builtin LSP client
-  "folke/lsp-colors.nvim",
+  -- Colorscheme inspired by the colors of the painting by Katsushika Hokusai
+  "rebelot/kanagawa.nvim",
+  -- A GUI library for Neovim plugin developers
+  {"ray-x/guihua.lua", build = "cd lua/fzy && make"},
+  -- Code analysis & navigation plugin
+  "ray-x/navigator.lua",
 })
+
+require('kanagawa').setup({
+    keywordStyle = { italic = false },
+    statementStyle = { bold = false },
+    colors = {
+        theme = {
+            all = {
+                ui = {
+                    fg = "#c7c7c7",
+                    fg_dim = "#a0a0a0",
+                    nontext = "#606060",
+                    bg = "#000000",
+                    bg_p1 = "#09090c",
+                    bg_gutter = "#000000",
+                },
+                syn = {
+                    comment = "#888888",
+                },
+                vcs = {
+                    added = "#a6e22e",
+                    removed = "#f02020",
+                    changed = "#cc00ff",
+                },
+            },
+        },
+    },
+    overrides = function(colors)
+        local theme = colors.theme
+        return {
+            -- boolean literals
+            ["@boolean"] = {
+                fg = theme.syn.constant, bg = theme.ui.bg, bold = false
+            },
+            -- operators that are English words (e.g. `and`, `or`)
+            ["@keyword.operator"] = {
+                fg = theme.syn.operator, bg = theme.ui.bg, bold = false
+            },
+            -- error-type comments (e.g. ERROR, FIXME, DEPRECATED)
+            ["@comment.error"] = {
+                fg = theme.syn.comment, bg = theme.ui.bg, bold = true
+            },
+            -- warning-type comments (e.g. WARNING, FIX, HACK)
+            ["@comment.warning"] = {
+                fg = theme.syn.comment, bg = theme.ui.bg, bold = true
+            },
+            -- todo-type comments (e.g. TODO, WIP)
+            ["@comment.todo"] = {
+                fg = theme.syn.comment, bg = theme.ui.bg, bold = true
+            },
+            -- note-type comments (e.g. NOTE, INFO, XXX)
+            ["@comment.note"] = {
+                fg = theme.syn.comment, bg = theme.ui.bg, bold = true
+            },
+        }
+    end,
+})
+
+vim.cmd.colorscheme('kanagawa')
 
 local lspconfig = require('lspconfig')
 local treesitter = require('nvim-treesitter.configs')

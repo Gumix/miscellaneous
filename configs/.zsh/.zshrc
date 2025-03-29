@@ -1,6 +1,9 @@
 # completion system
 autoload -Uz compinit && compinit
 
+# XDG Base Directory Specification
+export PATH="$HOME/.local/bin:$PATH"
+
 # 24-bit color
 export COLORTERM=truecolor
 
@@ -17,17 +20,21 @@ alias h='history'			# History
 alias ls='gls --almost-all --color'	# GNU ls: list all entries + enable colorized output
 alias l='ls -l'				# List in long format
 alias rm='rm -i'			# Request confirmation before attempting to remove each file
-alias tree="ls -R | grep \":$\" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
 alias grep='/opt/local/bin/grep --color=auto' # GNU grep + enable colorized output
 alias tmux='env TERM=screen-256color tmux' # Enable escape sequences for italic in tmux
 alias vim='nvim'			# Neovim
 alias vimdiff='nvim -d'			# Neovim diff
 
 # git aliases
+alias gs='git show'
+alias gd='git diff'
+alias gb='git branch'
 alias gbr='git branch'
 alias gst='git status'
 alias gco='git checkout'
+alias gl='git log --graph --decorate'
 alias glog='git log --graph --decorate'
+alias gg='git grep'
 alias ggrep='git grep'
 gshow() {
 	git show $1 | bat --language diff --style=plain --tabs 8

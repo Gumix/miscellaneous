@@ -14,7 +14,7 @@
 	email = iverbin@gmail.com
 [core]
 	editor = nvim
-	pager = less -x4
+	pager = delta
 	excludesfile = ~/.gitignore
 [push]
 	default = simple
@@ -25,8 +25,16 @@
 [diff]
 	noprefix = true
 [merge] 
-	tool = vimdiff 
-	conflictstyle = diff3 
+	tool = nvimdiff
+	conflictStyle = zdiff3
 [mergetool] 
 	prompt = false 
 	keepBackup = false
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	line-numbers = true
+	side-by-side = true
+	navigate = true
+	dark = true
+	syntax-theme = 1337_g
