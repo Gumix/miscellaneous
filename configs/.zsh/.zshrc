@@ -59,6 +59,7 @@ export GREP_COLORS="ms=38;5;226:mc=01;31:sl=:cx=:fn=35:ln=32:bn=32:se=36"
 
 # man colors
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
 
 # Prevent terminal from getting closed on Ctrl-D
 set -o ignoreeof

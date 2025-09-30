@@ -41,6 +41,9 @@ require("lazy").setup({
   "rebelot/kanagawa.nvim",
   -- A GUI library for Neovim plugin developers
   {"ray-x/guihua.lua", build = "cd lua/fzy && make"},
+  -- Make Vim handle line and column numbers in file names with a minimum of
+  -- fuss.
+  "wsdjeg/vim-fetch",
   -- Code analysis & navigation plugin
   "ray-x/navigator.lua",
 })
@@ -72,6 +75,12 @@ require('kanagawa').setup({
     },
     overrides = function(colors)
         local theme = colors.theme
+        local makeDiagColor = function(color)
+            local c = require("kanagawa.lib.color")
+            return {
+                fg = color, bg = c(color):blend(theme.ui.bg, 0.98):to_hex()
+            }
+        end
         return {
             -- boolean literals
             ["@boolean"] = {
@@ -97,17 +106,26 @@ require('kanagawa').setup({
             ["@comment.note"] = {
                 fg = theme.syn.comment, bg = theme.ui.bg, bold = true
             },
+            -- Tint background of diagnostic messages with their foreground color
+            DiagnosticVirtualLinesError = makeDiagColor(theme.diag.error),
+            DiagnosticVirtualLinesWarn  = makeDiagColor(theme.diag.warning),
+            DiagnosticVirtualLinesInfo  = makeDiagColor(theme.diag.info),
+            DiagnosticVirtualLinesHint  = makeDiagColor(theme.diag.hint),
         }
     end,
 })
 
 vim.cmd.colorscheme('kanagawa')
 
-local lspconfig = require('lspconfig')
+vim.lsp.config.clangd = {
+    cmd = { 'clangd', '--background-index' },
+    root_markers = { 'compile_commands.json', 'compile_flags.txt' },
+    filetypes = { 'c', 'cpp' },
+}
+
+vim.lsp.enable({'clangd'})
+
 local treesitter = require('nvim-treesitter.configs')
-
-lspconfig.clangd.setup{}
-
 treesitter.setup({
     highlight = {
         enable = true,
@@ -120,9 +138,10 @@ treesitter.setup({
 })
 
 vim.diagnostic.config({
-    virtual_text = {prefix = '●'},
+    virtual_text = false,
+    virtual_lines = true,
     signs = false,
-    underline = false,
+    underline = true,
     update_in_insert = false,
-    severity_sort = false,
+    severity_sort = true,
 })
