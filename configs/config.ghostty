@@ -1,0 +1,8 @@
+window-colorspace = display-p3
+theme = iTerm2 Dark Background
+font-family = Source Code Pro
+font-size = 17
+adjust-cell-height = 1
+cursor-style = block
+cursor-style-blink = false
+link-url = false
