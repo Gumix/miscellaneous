@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Здесь трейл — скачать GPX с сайта «Где трейл»",
+  "version": "0.1",
+  "description": "Добавляет кнопку «Скачать GPX» в карточку любого трейла на karta.gdetrail.ru",
+  "host_permissions": ["https://admin.gdetrail.ru/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://karta.gdetrail.ru/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}
