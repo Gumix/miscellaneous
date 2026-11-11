@@ -38,3 +38,7 @@
 	navigate = true
 	dark = true
 	syntax-theme = 1337_g
+	file-style               = "#0000ff"
+	line-numbers-zero-style  = "#606060"
+	line-numbers-left-style  = "#0000ff"
+	line-numbers-right-style = "#0000ff"

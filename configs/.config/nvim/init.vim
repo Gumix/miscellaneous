@@ -1,3 +1,4 @@
+set mouse=			" Disable mouse completely
 set number			" Show line numbers
 set ruler			" Show the cursor position all the time
 set laststatus=2		" Always display the status line
@@ -49,9 +50,6 @@ autocmd BufReadPost *
   \ endif
 augroup END
 
-" Results of grep - next F7, prev F9
-map <F7> :cprevious <CR>
-map <F9> :cnext <CR>
 let Grep_Skip_Dirs = '.git build install'
 let Grep_Skip_Files = 'tags'
 

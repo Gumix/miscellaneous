@@ -1,3 +1,13 @@
+prompt_git_branch_if_tmux_git() {
+    [[ -n "$TMUX" ]] || return 0
+    local wname
+    wname=$(tmux display-message -p '#W' 2>/dev/null) || return 0
+    [[ "$wname" == "git" ]] || return 0
+    local br
+    br=$(git rev-parse --abbrev-ref HEAD 2>/dev/null) || return 0
+    print -r -- " %F{red}(%F{034}${br}%F{red})%f"
+}
+
 # completion system
 autoload -Uz compinit && compinit
 
@@ -7,8 +17,10 @@ export PATH="$HOME/.local/bin:$PATH"
 # 24-bit color
 export COLORTERM=truecolor
 
+setopt prompt_subst
+
 # prompt
-PROMPT='%F{034}%n%F{red}@%F{034}%m%F{red}:%f%~%F{red}$%f '
+PROMPT='%F{034}%n%F{red}@%F{034}%m%F{red}:%f%~$(prompt_git_branch_if_tmux_git)%F{red}$%f '
 
 # history
 export HISTFILE="$HOME/.zsh/history"
@@ -22,6 +34,7 @@ alias l='ls -l'				# List in long format
 alias rm='rm -i'			# Request confirmation before attempting to remove each file
 alias grep='/opt/local/bin/grep --color=auto' # GNU grep + enable colorized output
 alias tmux='env TERM=screen-256color tmux' # Enable escape sequences for italic in tmux
+alias v='nvim'				# Neovim
 alias vim='nvim'			# Neovim
 alias vimdiff='nvim -d'			# Neovim diff
 

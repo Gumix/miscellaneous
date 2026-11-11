@@ -44,8 +44,6 @@ require("lazy").setup({
   -- Make Vim handle line and column numbers in file names with a minimum of
   -- fuss.
   "wsdjeg/vim-fetch",
-  -- Code analysis & navigation plugin
-  "ray-x/navigator.lua",
 })
 
 require('kanagawa').setup({
@@ -129,11 +127,6 @@ local treesitter = require('nvim-treesitter.configs')
 treesitter.setup({
     highlight = {
         enable = true,
-        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-        -- Using this option may slow down your editor, and you may see some duplicate highlights.
-        -- Instead of true it can also be a list of languages
-        additional_vim_regex_highlighting = false,
     },
 })
 
@@ -145,3 +138,28 @@ vim.diagnostic.config({
     update_in_insert = false,
     severity_sort = true,
 })
+
+vim.keymap.set("n", "<C-[>", vim.lsp.buf.incoming_calls,
+    { desc = "LSP incoming calls" })
+vim.keymap.set("n", "<C-,>", "<cmd>cprev<CR>",
+    { desc = "Previous quickfix item" })
+vim.keymap.set("n", "<C-.>", "<cmd>cnext<CR>",
+    { desc = "Next quickfix item" })
+
+vim.api.nvim_set_hl(0, "QuickFixLine", { link = "Visual" })
+
+local method = "callHierarchy/incomingCalls"
+local handler = vim.lsp.handlers and vim.lsp.handlers[method]
+if handler then
+    vim.lsp.handlers[method] = function(err, result, ctx, config)
+        handler(err, result, ctx, config)
+        if not err and result ~= nil then
+            vim.schedule(function()
+                if #vim.fn.getqflist() > 0 then
+                    pcall(vim.cmd, "cclose")
+                    vim.cmd("cfirst")
+                end
+            end)
+        end
+    end
+end

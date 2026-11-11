@@ -6,3 +6,4 @@ adjust-cell-height = 1
 cursor-style = block
 cursor-style-blink = false
 link-url = false
+selection-word-chars = " \t'\"│`|:;,()[]{}<>$+*"
